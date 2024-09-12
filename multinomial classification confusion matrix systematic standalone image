@@ -1,0 +1,306 @@
+% image from Activity, Context, and Plan Recognition with Computational Causal Behaviour Models S.71 rebuild
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{calc} % Für mathematische Operationen mit Längen
+
+\newcommand{\scale}{10} % Definiert ein Makro für den Wert 10
+
+
+\begin{document}
+    % Farben definieren
+    \definecolor{tncolor}{RGB}{255,153,51}  % True Negative
+    \definecolor{tpcolor}{RGB}{102,204,102} % True Positive
+    \definecolor{fncolor}{RGB}{255,102,102} % False Negative
+    \definecolor{fpcolor}{RGB}{153,76,0}    % False Positive
+%
+    % Legende Offset X
+    \newlength{\legendeoffsetx}%
+    \setlength{\legendeoffsetx}{50pt}%
+%
+    % Legend Text to Legend Label Offset x
+    \newlength{\legendtextoffsetx}%
+    \setlength{\legendtextoffsetx}{80pt}%
+ %   
+    % Länge definieren
+    \newlength{\columnonelenght}%
+    \setlength{\columnonelenght}{20pt*\scale}%
+    \newlength{\columntwolenght}%
+    \setlength{\columntwolenght}{10pt*\scale}%
+    \newlength{\columnthreelenght}%
+    \setlength{\columnthreelenght}{30pt*\scale}%
+%
+    \newlength{\rowonelenght}%
+    \setlength{\rowonelenght}{20pt*\scale}%
+    \newlength{\rowtwolenght}%
+    \setlength{\rowtwolenght}{10pt*\scale}%
+    \newlength{\rowthreelenght}%
+    \setlength{\rowthreelenght}{30pt*\scale}%
+%
+    \newlength{\seplenght}%
+    \setlength{\seplenght}{1.5pt*\scale}%
+%
+    \newlength{\achsenoffset}%
+    \setlength{\achsenoffset}{1pt}%
+%
+    % y
+    \newlength{\ya}%
+    \setlength{\ya}{0pt}%
+  %  
+    \newlength{\yb}%
+    \setlength{\yb}{\ya}%
+    \addtolength{\yb}{\rowonelenght}%
+ %   
+    \newlength{\yc}%
+    \setlength{\yc}{\yb}%
+    \addtolength{\yc}{\seplenght}%
+ %   
+    \newlength{\yd}%
+    \setlength{\yd}{\yc}%
+    \addtolength{\yd}{\rowtwolenght}%
+  %  
+    \newlength{\ye}%
+    \setlength{\ye}{\yd}%
+    \addtolength{\ye}{\seplenght}%
+ %   
+    \newlength{\yf}%
+    \setlength{\yf}{\ye}%
+    \addtolength{\yf}{\rowthreelenght}%
+%
+    % x
+    \newlength{\xa}%
+    \setlength{\xa}{0pt}%
+ %   
+    \newlength{\xb}%
+    \setlength{\xb}{\xa}%
+    \addtolength{\xb}{\columnonelenght}%
+  %  
+    \newlength{\xc}%
+    \setlength{\xc}{\xb}%
+    \addtolength{\xc}{\seplenght}%
+ %   
+    \newlength{\xd}%
+    \setlength{\xd}{\xc}%
+    \addtolength{\xd}{\columntwolenght}%
+ %   
+    \newlength{\xe}%
+    \setlength{\xe}{\xd}%
+    \addtolength{\xe}{\seplenght}%
+ %   
+    \newlength{\xf}%
+    \setlength{\xf}{\xe}%
+    \addtolength{\xf}{\columnthreelenght}%
+%
+    % Legende
+    \newlength{\legendboxxstart}%
+    \setlength{\legendboxxstart}{\xf}%
+    \addtolength{\legendboxxstart}{\achsenoffset}%
+    \addtolength{\legendboxxstart}{7em} % von Text von nodes c0 bis ck
+    \addtolength{\legendboxxstart}{\legendeoffsetx} %
+%
+    \newlength{\imageheight}%
+    \setlength{\imageheight}{\yf}%
+    \addtolength{\imageheight}{\achsenoffset}%
+    \addtolength{\imageheight}{3em} % von Text von nodes c0 bis ck
+%
+    % define box dimensions
+    \newlength{\legendboxheight}%
+    \setlength{\legendboxheight}{\rowtwolenght}%
+    \setlength{\legendboxheight}{(\legendboxheight*6)/10}%
+    \newlength{\legendboxwidth}%
+    \setlength{\legendboxwidth}{\legendboxheight*2}%
+    \newlength{\legendboxitselfoffset}%
+    \setlength{\legendboxitselfoffset}{(\legendboxheight*2)/10}%
+    \newlength{\legendboxxende} % legende box x ende
+    \setlength{\legendboxxende}{\legendboxxstart}%
+    \addtolength{\legendboxxende}{\legendboxwidth}%
+    \newlength{\imagemiddleline}%
+    \setlength{\imagemiddleline}{((\imageheight / 2) - \achsenoffset - 7em)}%
+%    
+    % lya, lyb, lyc, lyd, lye, lyf, lyg
+    \newlength{\lya}%
+    \newlength{\lyb}%
+    \newlength{\lyc}%
+    \newlength{\lyd}%
+    \newlength{\lye}%
+    \newlength{\lyf}%
+    \newlength{\lyg}%
+    \newlength{\lyh}%
+ %   
+    \setlength{\lya}{-\imagemiddleline + (\legendboxheight * 2) + (\legendboxitselfoffset * (3/2))}%
+    \setlength{\lyb}{\lya - \legendboxheight}%
+    \setlength{\lyc}{\lyb - \legendboxitselfoffset}%
+    \setlength{\lyd}{\lyc - \legendboxheight}%
+    \setlength{\lye}{\lyd - \legendboxitselfoffset}%
+    \setlength{\lyf}{\lye - \legendboxheight}%
+    \setlength{\lyg}{\lyf - \legendboxitselfoffset}%
+    \setlength{\lyh}{\lyg - \legendboxheight}%
+%
+\begin{tikzpicture}
+    % Alle Nodes Text gross
+    \tikzset{every node/.append style={font=\Huge}} 
+
+    % Farbige boxen
+    % oben links
+    \fill[tncolor] (\xa, -\ya) rectangle (\xb, -\yb); 
+    % oben mitte
+    \fill[fpcolor] (\xc, -\ya) rectangle (\xd, -\yb); 
+    % oben rechts
+    \fill[tncolor] (\xe,-\ya) rectangle (\xf, -\yb); 
+
+    % mitte links
+    \fill[fncolor] (\xa, -\yc) rectangle (\xb, -\yd); 
+    % mitte mitte
+    \fill[tpcolor] (\xc, -\yc) rectangle (\xd, -\yd);
+    % mitte rechts
+    \fill[fncolor] (\xe, -\yc) rectangle (\xf, -\yd);
+
+    % unten links
+    \fill[tncolor] (\xa, -\ye) rectangle (\xb, -\yf); 
+    % unten mitte
+    \fill[fpcolor] (\xc, -\ye) rectangle (\xd, -\yf);
+    % unten rechts
+    \fill[tncolor] (\xe, -\ye) rectangle (\xf, -\yf);
+
+
+
+    % rahmen
+    \draw[black] (\xa, -\ya) rectangle (\xb, -\yb); 
+    \draw[black] (\xc, -\ya) rectangle (\xd, -\yb); 
+    \draw[black] (\xe,-\ya) rectangle (\xf, -\yb); 
+
+    \draw[black] (\xa, -\yc) rectangle (\xb, -\yd); 
+    \draw[black] (\xc, -\yc) rectangle (\xd, -\yd);
+    \draw[black] (\xe, -\yc) rectangle (\xf, -\yd);
+
+    \draw[black] (\xa, -\ye) rectangle (\xb, -\yf); 
+    \draw[black] (\xc, -\ye) rectangle (\xd, -\yf);
+    \draw[black] (\xe, -\ye) rectangle (\xf, -\yf);
+
+    % Text
+    % oben links
+    \node at (  {(\xa+\xb)/2},
+                {-(\ya+\yb)/2}) 
+                {TN};
+    % oben mitte
+    \node at (  {(\xc+\xd)/2},
+                {-(\ya+\yb)/2}) 
+                {FP};
+    % oben rechts
+    \node at (  {(\xe+\xf)/2},
+                {-(\ya+\yb)/2}) 
+                {TN};
+    % 
+    % mitte links
+    \node at (  {(\xa+\xb)/2},
+                {-(\yc+\yd)/2}) 
+                {FN};
+    % mitte mitte
+    \node at (  {(\xc+\xd)/2},
+                {-(\yc+\yd)/2}) 
+                {TP};
+    % mitte rechts
+    \node at (  {(\xe+\xf)/2},
+                {-(\yc+\yd)/2}) 
+                {FN};
+    %
+    % unten links
+    \node at (  {(\xa+\xb)/2},
+                {-(\ye+\yf)/2}) 
+                {TN};
+    % unten mitte
+    \node at (  {(\xc+\xd)/2},
+                {-(\ye+\yf)/2}) 
+                {TP};
+    % unten rechts
+    \node at (  {(\xe+\xf)/2},
+                {-(\ye+\yf)/2}) 
+                {TN};
+
+
+    % Achsen beschriftungen
+    % x
+    % oben links
+    \node at (  {(\xa+\xb)/2},
+                {\achsenoffset + 2em}) 
+                {$c_0 \hspace{10pt} ... \hspace{10pt}  c_{k-1}$};
+    % oben mitte
+    \node at (  {(\xc+\xd)/2},
+                {\achsenoffset + 2em}) 
+                {$c_k$};
+    % oben rechts
+    \node at (  {(\xe+\xf)/2},
+                {\achsenoffset + 2em}) 
+                {$c_{k+1} \hspace{10pt} ... \hspace{10pt}  c_{n}$};
+    % y
+    % zeile 1
+    \node[rotate=90] at (   {\achsenoffset - 2em},
+                            {-(\ya+\yb)/2})
+                            {$c_{k+1} \hspace{10pt} ... \hspace{10pt}  c_n$};
+    % zeile 2
+    \node[rotate=90] at (   {\achsenoffset - 2em},
+                            {-(\yc+\yd)/2})
+                            {$c_k$};
+    % zeile 3
+    \node[rotate=90] at (   {\achsenoffset - 2em},
+                            {-(\ye+\yf)/2})
+                            {$c_0 \hspace{10pt} ... \hspace{10pt}  c_{k-1}$};
+
+    % Achsen Beschriftung II
+    % x
+    \node at (  {\xf/2},
+                {\achsenoffset + 6em}) 
+                {Estimate};
+    % y
+    \node[rotate=90] at (   {\achsenoffset - 6em},
+                            {-(\yf)/2})
+                            {annotated ground truth};
+
+
+
+    
+    % Legende erzeugen
+    \draw[black, fill=tncolor] (\legendboxxstart, \lya)
+                   rectangle 
+                   (\legendboxxende,\lyb );
+    \node [anchor=north, text height=1.25ex, text depth=0.5ex]at (  {(\legendboxxstart + \legendboxxende)/2},
+                {(\lya + \lyb)/2})
+                {TN};
+    \draw[black, fill=tpcolor] (\legendboxxstart, \lyc)
+                   rectangle 
+                   (\legendboxxende,\lyd);
+    \node at (  {(\legendboxxstart + \legendboxxende)/2},
+                {(\lyc + \lyd)/2})
+                {TP};
+    \draw[black, fill=fncolor] (\legendboxxstart, \lye)
+                   rectangle 
+                   (\legendboxxende,\lyf); 
+    \node at (  {(\legendboxxstart + \legendboxxende)/2},
+                {(\lye + \lyf)/2})
+                {FN};
+    \draw[black, fill=fpcolor] (\legendboxxstart, \lyg)
+                   rectangle 
+                   (\legendboxxende,\lyh);
+    \node at (  {(\legendboxxstart + \legendboxxende)/2},
+                {(\lyg + \lyh)/2})
+                {FP};
+
+    % Legende Text true negative, ...
+    \node [anchor=north, text height=1.25ex, text depth=0.5ex] at 
+                (  {\legendboxxende + \legendtextoffsetx},
+                {(\lya + \lyb)/2})
+                {true negative};
+    \node [anchor=north, text height=1.25ex, text depth=0.5ex] at 
+                (  {\legendboxxende + \legendtextoffsetx},
+                {(\lyc + \lyd)/2})
+                {true positive};
+    \node [anchor=north, text height=1.25ex, text depth=0.5ex] at 
+                (  {\legendboxxende + \legendtextoffsetx},
+                {(\lye + \lyf)/2})
+                {false negative};
+    \node [anchor=north, text height=1.25ex, text depth=0.5ex] at 
+                (  {\legendboxxende + \legendtextoffsetx},
+                {(\lyg + \lyh)/2})
+                {false positive};
+
+\end{tikzpicture}
+\end{document}
